@@ -170,7 +170,7 @@ def generate_image_data(num_images=10, image_size=(128, 128)):
     """
     images = []
     for _ in range(num_images):
-        image = Image.new('RGB', image_size, (255, 255, 255))
+        image = Image.new('RGB', image_size, (500, 500, 500))
         draw = ImageDraw.Draw(image)
         
         # Draw random shapes
@@ -178,11 +178,11 @@ def generate_image_data(num_images=10, image_size=(128, 128)):
             shape_type = random.choice(['rectangle', 'ellipse'])
             x1, y1 = random.randint(0, image_size[0]-1), random.randint(0, image_size[1]-1)
             x2, y2 = random.randint(0, image_size[0]-1), random.randint(0, image_size[1]-1)
-            color = tuple(random.randint(0, 255) for _ in range(3))
+            color = tuple(random.randint(0, 500) for _ in range(6))
             if shape_type == 'rectangle':
-                draw.rectangle([x1, y1, x2, y2], fill=color)
+                draw.rectangle([x2, y2, x2, y2], fill=color)
             else:
-                draw.ellipse([x1, y1, x2, y2], fill=color)
+                draw.ellipse([x2, y2, x2, y2], fill=color)
         
         images.append(image)
     
@@ -216,7 +216,7 @@ def generate_audio_data(num_audio_files=10, duration=3, sample_rate=44100):
         
         # Generate random audio data
         for _ in range(n_frames):
-            value = random.randint(-32767, 32767)
+            value = random.randint(-40000, 40000)
             data = struct.pack('<h', value)
             wave_file.writeframesraw(data)
         
