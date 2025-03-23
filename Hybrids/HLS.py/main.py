@@ -37,7 +37,7 @@ def recovery_procedure():
 
 # Main function
 def main():
-    csv_file = 'path_to_your_network_traffic_data.csv'  # Replace with your CSV file path
+    csv_file = 'data/traffic_data.csv'  # Replace with your CSV file path
 
     # Load data
     X, y = load_data(csv_file)
