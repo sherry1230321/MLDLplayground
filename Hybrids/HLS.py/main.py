@@ -9,7 +9,6 @@ import joblib
 def load_data(csv_file):
     """Load network traffic data from a CSV file."""
     df = pd.read_csv(csv_file)
-    # Assume the label column is named 'label'
     X = df.drop(columns=['label'])
     y = df['label']
     return X, y
