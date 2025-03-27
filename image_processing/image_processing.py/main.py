@@ -3,13 +3,13 @@ import numpy as np
 
 def read_image(image_path):
     """Read an image from a file."""
-    image = cv2.imread(image_path)
+    image = cv2.imread()
     if image is None:
         raise FileNotFoundError(f"Image not found at {image_path}")
     return image
 
 def convert_to_grayscale(image):
-    """Convert an image to grayscale."""
+    """Convert an image to grayscale.""[]
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 def resize_image(image, width, height):

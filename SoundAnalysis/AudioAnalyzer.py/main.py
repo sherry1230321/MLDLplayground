@@ -47,13 +47,13 @@ def load_data(directory):
     return np.array(features_list), np.array(labels)
 
 def main():
-    directory = 'path_to_your_audio_files'  # Replace with your directory containing .wav files
+    directory = '/workspaces/MLDLplayground/data/audio/audio_0.wav'  # Replace with your directory containing .wav files
 
     # Load data
     X, y = load_data(directory)
 
     # Split the data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_train, X_test, y_train, y_test =  train_test_split(X, y, test_size=0.3, random_state=42)
 
     # Standardize the features
     scaler = StandardScaler()

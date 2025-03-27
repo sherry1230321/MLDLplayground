@@ -1,5 +1,6 @@
-# dbn.py
 import numpy as np
+import pickle
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from dbn.tensorflow import SupervisedDBNClassification
@@ -18,16 +19,30 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# Train DBN model
-model = SupervisedDBNClassification(hidden_layers_structure=[256, 256],
-                                    learning_rate_rbm=0.05,
-                                    learning_rate=0.1,
-                                    n_epochs_rbm=10,
-                                    n_iter_backprop=100,
-                                    batch_size=32,
-                                    activation_function='relu',
-                                    dropout_p=0.2)
-model.fit(X_train, y_train)
+# Define model path
+model_path = "dbn_model.pkl"
+
+# Check if a saved model exists
+if os.path.exists(model_path):
+    print("Loading existing model...")
+    with open(model_path, 'rb') as file:
+        model = pickle.load(file)
+else:
+    # Train DBN model
+    model = SupervisedDBNClassification(hidden_layers_structure=[256, 256],
+                                        learning_rate_rbm=0.05,
+                                        learning_rate=0.1,
+                                        n_epochs_rbm=10,
+                                        n_iter_backprop=100,
+                                        batch_size=32,
+                                        activation_function='relu',
+                                        dropout_p=0.2)
+    model.fit(X_train, y_train)
+    
+    # Save model
+    with open(model_path, 'wb') as file:
+        pickle.dump(model, file)
+    print("Model saved.")
 
 # Make predictions
 y_pred = model.predict(X_test)
