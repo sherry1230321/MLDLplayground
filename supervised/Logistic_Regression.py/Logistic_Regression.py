@@ -12,6 +12,7 @@ X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
+
 # Make predictions
 y_pred = model.predict(X_test)
 
